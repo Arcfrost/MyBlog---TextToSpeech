@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% load gTTS %}
+{% block content %}
+{% load static %}
+    <h1 class='center'><p class='#ef9a9a red-text lighten-3'>{{ article.title }}</p></h1>
+    
+ 
+
+    <div class='container'>
+        <a 
+        href=" {% url 'article_speech' article.pk %} "
+        onclick="getElementById('aa').innerHTML = 'Loading... Please Wait' " 
+        class="waves-effect waves-light btn">Click here to Listen!</a>
+        
+        <blockquote><font id='aa' size="4"
+            face="verdana"
+            color="red">
+        
+          </font></blockquote>
+        <p class='flow-text'>
+        {{ article.content }}
+    </p>
+    <blockquote> Created At: {{ article.createdAt }} </blockquote>
+    <h5>Written By: {% for author in article.authors.all %} 
+        <a href=" {% url 'get_author' author.pk %} ">{{ author }} </a>
+        
+    {% endfor %}
+        
+    </h5>
+    </div>
+
+{% endblock %}

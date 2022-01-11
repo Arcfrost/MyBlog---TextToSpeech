@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <h1 class='center'><p class='#ef9a9a red-text lighten-3'>Login</p></h1>
+
+        
+    
+
+    <div class='container '>
+        
+    
+        
+
+        <form method='POST'>
+        {% csrf_token %}
+
+       {{form.as_p}}
+        <div>
+            <button class="btn waves-effect waves-light">Login
+            <i class="material-icons right">send</i>
+            </button>
+        
+            <button class="waves-effect waves-light btn" type='reset'>Reset</button>
+
+            <p>Or</p> <a class="waves-effect waves-light btn" href=" {% url 'register' %} ">Sign Up</a>
+
+
+        </div>
+        
+
+    
+    </form>
+
+    
+    </div>
+    
+    <script>
+    
+            document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+    });
+
+    </script>
+{% endblock %}

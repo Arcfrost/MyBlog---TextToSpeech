@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1 class='center'><p class='#ef9a9a red-text lighten-3'>Welcome to my Blog!
+  
+{% if user.is_authenticated %}
+<span style="text-transform:uppercase">{{user}}</span>
+{% endif %}
+
+</p></h1>
+
+
+<div class='container'>
+
+    <blockquote><h4><p class='#ef9a9a red-text lighten-3'>Top 10 Posts</p></h4></blockquote>
+
+
+
+<div class="row">
+    {% for article in latest_posts %}
+    <div class="col s12 m6" >
+      <a href=" {% url 'get_article' article.pk %} " >
+      <div class="card small #78909c blue-grey lighten-1">
+        <div class="card-content white-text" height="200">
+          <span class="card-title "> <h4 class='white-text'>{{ article }}</h4></span>
+          <p>{{ article.content }}</p>
+          <br>
+          <p>Created At: {{article.createdAt}} </p>
+        </div>
+        <div class="card-action">
+          <a href=" {% url 'get_article' article.pk %} " >Read</a>
+          <p class='white-text'>By: {% for author in article.author.all %} 
+            <a href=" {% url 'get_author' author.pk %} ">{{ author }} </a>
+      </a>
+        {% endfor %}   
+        </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
+</div>
+{% endblock %}
